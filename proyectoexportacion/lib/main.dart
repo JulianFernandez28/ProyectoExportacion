@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyectoexportacion/widgets/firstscreen.dart';
+import 'package:proyectoexportacion/widgets/fourscreen.dart';
+import 'package:proyectoexportacion/widgets/perfilscreen.dart';
 import 'package:proyectoexportacion/widgets/screenenvios.dart';
 import 'package:proyectoexportacion/widgets/thirtscreen.dart';
 import 'package:proyectoexportacion/widgets/secondscreen.dart';
@@ -16,7 +18,9 @@ void main() {
         '/': (context) => const FirstScreen(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         'second': (context) => const SecondScreen(),
-        'thirt': (context) => const ThirtScreen()
+        'thirt': (context) => const ThirtScreen(),
+        'four': (context) => const FourScreen(),
+        'perfil':((context) => const PerfilUser())
       },
     ),
   );
