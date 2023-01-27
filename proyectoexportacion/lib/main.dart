@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:proyectoexportacion/widgets/firstscreen.dart';
 import 'package:proyectoexportacion/widgets/fourscreen.dart';
 import 'package:proyectoexportacion/widgets/perfilscreen.dart';
-import 'package:proyectoexportacion/widgets/screenenvios.dart';
 import 'package:proyectoexportacion/widgets/thirtscreen.dart';
 import 'package:proyectoexportacion/widgets/secondscreen.dart';
 
