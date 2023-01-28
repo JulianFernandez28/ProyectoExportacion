@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:proyectoexportacion/pages/login.dart';
 import 'package:proyectoexportacion/widgets/firstscreen.dart';
-import 'package:proyectoexportacion/widgets/fourscreen.dart';
+
 import 'package:proyectoexportacion/widgets/perfilscreen.dart';
-import 'package:proyectoexportacion/widgets/thirtscreen.dart';
+
 import 'package:proyectoexportacion/widgets/secondscreen.dart';
 
 void main() {
@@ -14,12 +15,11 @@ void main() {
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const FirstScreen(),
+        '/': (context) => const LoginTranshipper(),
         // When navigating to the "/second" route, build the SecondScreen widget.
+        'login': ((context) => const FirstScreen()),
         'second': (context) => const SecondScreen(),
-        'thirt': (context) => const ThirtScreen(),
-        'four': (context) => const FourScreen(),
-        'perfil':((context) => const PerfilUser())
+        'perfil': ((context) => const PerfilUser())
       },
     ),
   );
