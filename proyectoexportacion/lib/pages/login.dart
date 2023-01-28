@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/circleimagelogo.dart';
+import '../widgets/fondodegrado.dart';
+
 class LoginTranshipper extends StatelessWidget {
   const LoginTranshipper({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
@@ -16,55 +20,128 @@ class LoginTranshipper extends StatelessWidget {
       ),
       body: SafeArea(
           child: Stack(
+        fit: StackFit.expand,
         children: <Widget>[
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment(0.0, 0.1),
-                    colors: <Color>[
-                  Color.fromRGBO(35, 46, 141, 25),
-                  Color.fromARGB(253, 163, 100, 60)
-                ])),
-          ),
-          Positioned(
-              bottom: 100,
-              left: 20,
-              right: 20,
-              top: 300,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                elevation: 1,
-                shadowColor: Colors.black,
-                color: Colors.white,
-                child: ListView(
-                  padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        // FadeInImage.assetNetwork(
-                        //   image:
-                        //       'https://img.freepik.com/vector-premium/ilustracion-vector-barco-vela-dibujos-animados_491934-476.jpg?w=2000',
-                        //   placeholder: '',
-                        // ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 50.0,
-                    ),
-                    const TextField(
-                      decoration: const InputDecoration(labelText: 'Username'),
-                    ),
-                    const TextField(
-                      decoration: const InputDecoration(
-                          filled: true, labelText: 'Password'),
+          const fondodegradado(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircleImageLogo(),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: Container(
+                        height: 310,
+                        width: 340,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 25.0),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.rectangle,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 59, 59, 59),
+                                offset: Offset(
+                                  5.0,
+                                  5.0,
+                                ),
+                                blurRadius: 10.0,
+                                spreadRadius: 0.8,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Column(
+                          children: [
+                            TextField(
+                              enableInteractiveSelection: false,
+                              autofocus: true,
+                              textCapitalization: TextCapitalization.characters,
+                              decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  hintText: 'UserName',
+                                  labelText: 'UserName',
+                                  suffixIcon: Icon(Icons.verified_user),
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0))),
+                            ),
+                            const Divider(
+                              height: 15.0,
+                            ),
+                            TextField(
+                              enableInteractiveSelection: false,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  hintText: 'Password',
+                                  labelText: 'Password',
+                                  suffixIcon: const Icon(Icons.key),
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0))),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const <Widget>[
+                                  Text(
+                                    'Restablecer Contraseña',
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w600,
+                                        color:
+                                            Color.fromARGB(255, 17, 63, 131)),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  TextButton(
+                                    style: TextButton.styleFrom(
+                                        textStyle:
+                                            const TextStyle(fontSize: 15)),
+                                    onPressed: (() {}),
+                                    child: const Text(
+                                      'Registrarse',
+                                      style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.w600,
+                                          color:
+                                              Color.fromARGB(255, 196, 26, 26)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            MaterialButton(
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              minWidth: 180,
+                              color: Color.fromRGBO(87, 57, 124, 100),
+                              onPressed: () {},
+                              child: Text(
+                                'Iniciar Sesion',
+                                style: TextStyle(
+                                    fontSize: 15.0, color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     )
                   ],
                 ),
-              ))
+              )
+            ],
+          )
         ],
       )),
     );
