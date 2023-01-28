@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import '../widgets/circleimagelogo.dart';
 import '../widgets/fondodegrado.dart';
 
-class LoginTranshipper extends StatelessWidget {
+class LoginTranshipper extends StatefulWidget {
   const LoginTranshipper({super.key});
 
+  @override
+  State<LoginTranshipper> createState() => _LoginTranshipperState();
+}
+
+class _LoginTranshipperState extends State<LoginTranshipper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
