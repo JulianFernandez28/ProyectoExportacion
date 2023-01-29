@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyectoexportacion/pages/login.dart';
+import 'package:proyectoexportacion/pages/registro.dart';
 
 import 'package:proyectoexportacion/widgets/perfilscreen.dart';
 import 'package:proyectoexportacion/widgets/secondscreen.dart';
@@ -13,7 +14,7 @@ class FirstScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Menu Principal'),
       ),
-      body: LoginTranshipper(),
+      body: RegistroUsuario(),
       // body: SizedBox(
       //   child: ListView(
       //     children: [
