@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyectoexportacion/pages/login.dart';
 
 class FormularioRegistro extends StatelessWidget {
   const FormularioRegistro({
@@ -7,6 +8,11 @@ class FormularioRegistro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _nombreusuarioController = TextEditingController();
+    final _apellidUsuarioController = TextEditingController();
+    final _emailController = TextEditingController();
+    final _passwordController = TextEditingController();
+
     return Container(
       height: 380,
       width: 340,
@@ -25,6 +31,7 @@ class FormularioRegistro extends StatelessWidget {
       child: Column(
         children: [
           TextField(
+            controller: _nombreusuarioController,
             enableInteractiveSelection: true,
             autofocus: true,
             autocorrect: false,
@@ -40,6 +47,7 @@ class FormularioRegistro extends StatelessWidget {
             height: 10.0,
           ),
           TextField(
+            controller: _apellidUsuarioController,
             enableInteractiveSelection: true,
             autofocus: true,
             autocorrect: false,
@@ -55,6 +63,7 @@ class FormularioRegistro extends StatelessWidget {
             height: 10.0,
           ),
           TextField(
+            controller: _emailController,
             enableInteractiveSelection: true,
             autofocus: true,
             autocorrect: false,
@@ -71,6 +80,7 @@ class FormularioRegistro extends StatelessWidget {
             height: 10.0,
           ),
           TextField(
+            controller: _passwordController,
             enableInteractiveSelection: false,
             obscureText: true,
             decoration: InputDecoration(
@@ -89,7 +99,16 @@ class FormularioRegistro extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30)),
               minWidth: 200,
               color: const Color.fromRGBO(87, 57, 124, 100),
-              onPressed: () {},
+              onPressed: () {
+                _nombreusuarioController.clear();
+                _apellidUsuarioController.clear();
+                _emailController.clear();
+                _passwordController.clear();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginTranshipper()));
+              },
               child: const Text(
                 'Registrarse',
                 style: TextStyle(fontSize: 15.0, color: Colors.white),

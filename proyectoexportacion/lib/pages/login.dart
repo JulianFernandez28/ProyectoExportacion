@@ -22,10 +22,9 @@ class _LoginTranshipperState extends State<LoginTranshipper> {
           'Iniciar Sesion',
         ),
         backgroundColor: const Color.fromRGBO(35, 46, 141, 25),
-        leading: const BackButton(color: Color.fromARGB(255, 255, 255, 255)),
       ),
       body: SafeArea(
-        child: Stack(
+          child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           const fondodegradado(),
@@ -50,4 +49,3 @@ class _LoginTranshipperState extends State<LoginTranshipper> {
     );
   }
 }
-

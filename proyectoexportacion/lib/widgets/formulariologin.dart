@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proyectoexportacion/pages/menuprincipal.dart';
+import 'package:proyectoexportacion/pages/registro.dart';
 
 class FormularioLogin extends StatelessWidget {
   const FormularioLogin({
@@ -7,11 +9,13 @@ class FormularioLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _emailController = TextEditingController();
+    final _passwordController = TextEditingController();
+
     return Container(
       height: 310,
       width: 340,
-      padding: const EdgeInsets.symmetric(
-          horizontal: 10.0, vertical: 25.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 25.0),
       decoration: BoxDecoration(
           color: Colors.white,
           shape: BoxShape.rectangle,
@@ -30,18 +34,17 @@ class FormularioLogin extends StatelessWidget {
       child: Column(
         children: [
           TextField(
+            controller: _emailController,
             enableInteractiveSelection: false,
-            autofocus: true,
+            autofocus: false,
             autocorrect: false,
-            
             decoration: InputDecoration(
                 fillColor: Colors.white,
-                hintText: 'UserName',
-                labelText: 'UserName',
-                suffixIcon: const Icon(Icons.verified_user),
+                hintText: 'Email',
+                labelText: 'Email',
+                suffixIcon: const Icon(Icons.email_outlined),
                 border: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(10.0))),
+                    borderRadius: BorderRadius.circular(10.0))),
           ),
           const Divider(
             height: 15.0,
@@ -55,8 +58,7 @@ class FormularioLogin extends StatelessWidget {
                 labelText: 'Password',
                 suffixIcon: const Icon(Icons.key),
                 border: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(10.0))),
+                    borderRadius: BorderRadius.circular(10.0))),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
@@ -68,8 +70,7 @@ class FormularioLogin extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
-                      color:
-                          Color.fromARGB(255, 17, 63, 131)),
+                      color: Color.fromARGB(255, 17, 63, 131)),
                 ),
               ],
             ),
@@ -81,16 +82,19 @@ class FormularioLogin extends StatelessWidget {
               children: <Widget>[
                 TextButton(
                   style: TextButton.styleFrom(
-                      textStyle:
-                          const TextStyle(fontSize: 15)),
-                  onPressed: (() {}),
+                      textStyle: const TextStyle(fontSize: 15)),
+                  onPressed: (() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegistroUsuario()));
+                  }),
                   child: const Text(
                     'Registrarse',
                     style: TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w600,
-                        color:
-                            Color.fromARGB(255, 196, 26, 26)),
+                        color: Color.fromARGB(255, 196, 26, 26)),
                   ),
                 ),
               ],
@@ -98,15 +102,19 @@ class FormularioLogin extends StatelessWidget {
           ),
           MaterialButton(
             padding: const EdgeInsets.symmetric(vertical: 15),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             minWidth: 180,
             color: const Color.fromRGBO(87, 57, 124, 100),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MenuPrincipal()));
+            },
             child: const Text(
               'Iniciar Sesion',
-              style: TextStyle(
-                  fontSize: 15.0, color: Colors.white),
+              style: TextStyle(fontSize: 15.0, color: Colors.white),
             ),
           )
         ],

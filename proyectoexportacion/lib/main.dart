@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:proyectoexportacion/pages/login.dart';
+import 'package:proyectoexportacion/pages/menuprincipal.dart';
 import 'package:proyectoexportacion/pages/registro.dart';
-import 'package:proyectoexportacion/widgets/firstscreen.dart';
 
 import 'package:proyectoexportacion/widgets/perfilscreen.dart';
 
-import 'package:proyectoexportacion/widgets/secondscreen.dart';
 
 void main() {
   runApp(
@@ -16,10 +15,10 @@ void main() {
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const RegistroUsuario(),
+        '/': (context) => const LoginTranshipper(),
         // When navigating to the "/second" route, build the SecondScreen widget.
-        'login': ((context) => const FirstScreen()),
-        'second': (context) => const SecondScreen(),
+        'Registrar': ((context) => const RegistroUsuario()),
+        'Menu': (context) => const MenuPrincipal(),
         'perfil': ((context) => const PerfilUser())
       },
     ),
