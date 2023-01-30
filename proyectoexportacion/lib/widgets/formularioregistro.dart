@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:proyectoexportacion/pages/login.dart';
 
+import 'labelpassword.dart';
+import 'labeltext.dart';
+
 class FormularioRegistro extends StatelessWidget {
   const FormularioRegistro({
     Key? key,
@@ -30,67 +33,31 @@ class FormularioRegistro extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0)),
       child: Column(
         children: [
-          TextField(
-            controller: _nombreusuarioController,
-            enableInteractiveSelection: true,
-            autofocus: true,
-            autocorrect: false,
-            decoration: InputDecoration(
-                fillColor: Colors.white,
-                hintText: 'Nombres',
-                labelText: 'Nombres',
-                suffixIcon: const Icon(Icons.person_outlined),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0))),
+          LabelText(
+            nameController: _nombreusuarioController,
+            tipodevalor: 'Nombre',
+            iconsufflixIcon: Icons.person_outlined,
           ),
           const Divider(
             height: 10.0,
           ),
-          TextField(
-            controller: _apellidUsuarioController,
-            enableInteractiveSelection: true,
-            autofocus: true,
-            autocorrect: false,
-            decoration: InputDecoration(
-                fillColor: Colors.white,
-                hintText: 'Apellidos',
-                labelText: 'Apellidos',
-                suffixIcon: const Icon(Icons.person_outlined),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0))),
+          LabelText(
+            nameController: _apellidUsuarioController,
+            tipodevalor: 'Apellidos',
+            iconsufflixIcon: Icons.person_outlined,
           ),
           const Divider(
             height: 10.0,
           ),
-          TextField(
-            controller: _emailController,
-            enableInteractiveSelection: true,
-            autofocus: true,
-            autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-                fillColor: Colors.white,
-                hintText: 'E-mail',
-                labelText: 'E-mail',
-                suffixIcon: const Icon(Icons.email_outlined),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0))),
+          LabelText(
+            nameController: _emailController,
+            tipodevalor: 'Email',
+            iconsufflixIcon: Icons.email_outlined,
           ),
           const Divider(
             height: 10.0,
           ),
-          TextField(
-            controller: _passwordController,
-            enableInteractiveSelection: false,
-            obscureText: true,
-            decoration: InputDecoration(
-                fillColor: Colors.white,
-                hintText: 'Password',
-                labelText: 'Password',
-                suffixIcon: const Icon(Icons.key),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0))),
-          ),
+          LabelPassword(passwordController: _passwordController, tipoValor: 'Password', iconsuffic: Icons.key,),
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: MaterialButton(
@@ -120,3 +87,4 @@ class FormularioRegistro extends StatelessWidget {
     );
   }
 }
+

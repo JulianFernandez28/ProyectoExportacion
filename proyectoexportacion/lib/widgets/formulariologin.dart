@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:proyectoexportacion/pages/menuprincipal.dart';
 import 'package:proyectoexportacion/pages/registro.dart';
 
+import 'labelpassword.dart';
+import 'labeltext.dart';
+
 class FormularioLogin extends StatelessWidget {
   const FormularioLogin({
     Key? key,
@@ -33,33 +36,11 @@ class FormularioLogin extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0)),
       child: Column(
         children: [
-          TextField(
-            controller: _emailController,
-            enableInteractiveSelection: false,
-            autofocus: false,
-            autocorrect: false,
-            decoration: InputDecoration(
-                fillColor: Colors.white,
-                hintText: 'Email',
-                labelText: 'Email',
-                suffixIcon: const Icon(Icons.email_outlined),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0))),
-          ),
+          LabelText(nameController: _emailController,tipodevalor: 'Email',iconsufflixIcon: Icons.email_outlined,),
           const Divider(
             height: 15.0,
           ),
-          TextField(
-            enableInteractiveSelection: false,
-            obscureText: true,
-            decoration: InputDecoration(
-                fillColor: Colors.white,
-                hintText: 'Password',
-                labelText: 'Password',
-                suffixIcon: const Icon(Icons.key),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0))),
-          ),
+          LabelPassword(passwordController: _passwordController, tipoValor: 'Password', iconsuffic: Icons.key,),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Row(
@@ -122,3 +103,4 @@ class FormularioLogin extends StatelessWidget {
     );
   }
 }
+
