@@ -45,3 +45,21 @@ Widget button =
             ),
           )))
 ]);
+
+Widget buttonsee = Row(
+  mainAxisAlignment: MainAxisAlignment.end,
+  children: <Widget>[
+    TextButton(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        backgroundColor: MaterialStateProperty.all<Color>(
+            const Color.fromARGB(255, 180, 84, 132)),
+      ),
+      onPressed: () {},
+      child: const Text('Ver'),
+    ),
+    const SizedBox(
+      width: 40,
+    )
+  ],
+);
