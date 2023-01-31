@@ -18,8 +18,9 @@ Widget infoGeneral = Container(
                     fontFamily: 'Montserrat'),
               ),
             ),
-            cempasuchilpay(),
+            datacont(),
             const Card(
+              margin: EdgeInsets.only(top: 10, bottom: 5),
               child: Text(
                 'Información del usuario',
                 style: TextStyle(
@@ -30,45 +31,81 @@ Widget infoGeneral = Container(
               ),
             ),
             Card(
+              margin: const EdgeInsets.only(bottom: 30),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const <Widget>[
-                    Text('Luis Fernando Naal Pacheco'),
-                    Text('+52 9992450318'),
-                    Text('Calle 54 x 129 y 131 San Jose Tecoh, 97299, Mérida'),
-                    Text('Yucatán, México'),
-                    Text('Descripcion del lugar de entrega')
+                    Text(
+                      'Luis Fernando Naal Pacheco',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '+52 9992450318',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Calle 54  San Jose Tecoh, 97299, Mérida',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Yucatán, México',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Descripcion del lugar de entrega',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    )
                   ],
                 ),
               ),
             ),
             Card(
+              elevation: 10,
               child: Center(
                 child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    const Text(
+                  children: const <Widget>[
+                    Text(
                       'Numero Pedido: 845466885648',
                       style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const Text('Pago Efecutado: 01 Nov, 2022, 12:23',
+                    Text('Pago Efecutado: 01 Nov, 2022, 12:23',
                         style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         )),
-                    const Text('Método De Pago: ---------------',
+                    Text('Método De Pago: ---------------',
                         style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         )),
-                    button,
                   ],
                 ),
               ),
-            )
+            ),
+            button
           ],
         ),
       ),
@@ -76,60 +113,40 @@ Widget infoGeneral = Container(
   ),
 );
 
-Card cempasuchilpay() {
-  return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      margin: const EdgeInsets.all(0),
-      elevation: 50,
-      child: Column(children: const <Widget>[
-        //Contenido de la card
-        ListTile(
-          leading: Image(
-            image: NetworkImage(
-                'https://www.gastrolabweb.com/u/fotografias/m/2022/9/27/f1280x720-35392_167067_4938.jpg'),
-          ),
-          title: Text(
-            'Cempasúchil',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-              fontFamily: 'Montserrat',
-            ),
-          ),
-          subtitle: Text(
-            'Servicio: Exportación.',
-            style: TextStyle(
-              fontSize: 15,
-            ),
-          ),
-          trailing: Text('01 nov 2022'),
-        ),
-        ListTile(
-            title: (Text(
-          'Subtotal: 42,000',
-          style: TextStyle(
-            fontSize: 13,
-          ),
-        ))),
-        ListTile(
-            title: (Text(
-          'Total: 50,000',
-          style: TextStyle(
-            fontSize: 13,
-          ),
-        ))),
-      ]));
-}
+String description =
+    " Cempasúchil | Servicio: Exportación | Cantidad: 2 TL | Entrega en 2 días |"
+    " | Subtotal: 45,000 |"
+    " Total: 50,000";
+String newDescription = description.replaceAll("|", "\n");
 
-Widget florCard = Container(
-  child: Card(
+Container datacont() {
+  return Container(
     child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         Card(
-          child: Row(),
-        )
+          child: Container(
+              width: 150,
+              height: 150,
+              child: const Card(
+                child: Image(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        'https://www.gastrolabweb.com/u/fotografias/m/2022/9/27/f1280x720-35392_167067_4938.jpg')),
+              )),
+        ),
+        Row(
+          children: [
+            Text(
+              newDescription,
+              style: const TextStyle(
+                  fontSize: 15,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.bold),
+            ),
+            //datapago()
+          ],
+        ),
       ],
     ),
-  ),
-);
+  );
+}
