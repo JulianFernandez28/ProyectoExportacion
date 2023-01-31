@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 String description1 =
-    " Lilium | Servicio: Exportación | Cantidad: 2 TL | Entrega en 2 días |";
+    " Girasol | Servicio: Exportación | Cantidad: 2 TL | Entrega en 2 días |";
 String newDescription1 = description1.replaceAll("|", "\n");
 
-Container cardLilium() {
+Container cardGirasol() {
   return Container(
     child: Row(
       children: <Widget>[
@@ -17,7 +17,7 @@ Container cardLilium() {
                 child: Image(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        'https://www.floresyplantas.net/wp-content/uploads/flores-de-lilium.jpg')),
+                        'https://media.admagazine.com/photos/61eb22cb9b19d943aa117b30/master/w_1600%2Cc_limit/Girasol.jpg')),
               )),
         ),
         Row(

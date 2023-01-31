@@ -9,6 +9,7 @@ Container cardNocheBuena() {
     child: Row(
       children: <Widget>[
         Card(
+          elevation: 20,
           child: Container(
               width: 150,
               height: 150,
@@ -29,7 +30,7 @@ Container cardNocheBuena() {
                   fontWeight: FontWeight.bold),
             ),
             Container(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 125,
               ),
               child: TextButton(
@@ -40,7 +41,7 @@ Container cardNocheBuena() {
                     backgroundColor: MaterialStateProperty.all<Color>(
                         const Color.fromARGB(255, 180, 84, 132)),
                   ),
-                  child: Text("Ver")),
+                  child: const Text("Ver")),
             )
           ],
         ),

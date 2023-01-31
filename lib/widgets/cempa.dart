@@ -1,19 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:transhipper/widgets/button.dart';
-
-// Card cempasuchil() {
-//   return Card(
-//     // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-//     margin: const EdgeInsets.all(10),
-//     elevation: 50,
-//     child: Column(
-//       children: <Widget>[
-//         cardview(),
-//         buttonsee,
-//       ],
-//     ),
-//   );
-// }
 
 String description1 =
     " Cempasúchil | Servicio: Exportación | Cantidad: 2 TL | Entrega en 2 días |";
@@ -24,6 +9,7 @@ Container cardCempa() {
     child: Row(
       children: <Widget>[
         Card(
+          elevation: 20,
           child: Container(
               width: 150,
               height: 150,
@@ -55,7 +41,7 @@ Container cardCempa() {
                     backgroundColor: MaterialStateProperty.all<Color>(
                         const Color.fromARGB(255, 180, 84, 132)),
                   ),
-                  child: Text("Ver")),
+                  child: const Text("Ver")),
             )
           ],
         ),
@@ -63,5 +49,3 @@ Container cardCempa() {
     ),
   );
 }
-
-//lilium image https://www.floresyplantas.net/wp-content/uploads/flores-de-lilium.jpg
