@@ -20,7 +20,9 @@ Widget infoGeneral = Container(
             ),
             datacont(),
             const Card(
-              margin: EdgeInsets.only(top: 10, bottom: 5),
+              elevation: 20,
+              borderOnForeground: false,
+              margin: EdgeInsets.only(top: 20, bottom: 5),
               child: Text(
                 'Información del usuario',
                 style: TextStyle(
@@ -31,7 +33,9 @@ Widget infoGeneral = Container(
               ),
             ),
             Card(
-              margin: const EdgeInsets.only(bottom: 30),
+              borderOnForeground: false,
+              elevation: 20,
+              margin: const EdgeInsets.only(bottom: 30, top: 30),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -78,6 +82,7 @@ Widget infoGeneral = Container(
             ),
             Card(
               elevation: 10,
+              margin: const EdgeInsets.only(bottom: 25),
               child: Center(
                 child: Column(
                   children: const <Widget>[
@@ -143,7 +148,6 @@ Container datacont() {
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.bold),
             ),
-            //datapago()
           ],
         ),
       ],

@@ -31,17 +31,17 @@ class MyApp extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            //infoGeneral,
+            infoGeneral,
 
-            const SearchBad(),
+            // const SearchBad(),
 
-            cardCempa(),
-            cardLilium(),
-            cardNocheBuena(),
-            cardBogambilia(),
-            cardClavel(),
-            cardGirasol(),
-            cardMargarita(),
+            // cardCempa(),
+            // cardLilium(),
+            // cardNocheBuena(),
+            // cardBogambilia(),
+            // cardClavel(),
+            // cardGirasol(),
+            //cardMargarita(),
           ],
         ),
       ),
