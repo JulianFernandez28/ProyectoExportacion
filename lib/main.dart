@@ -3,7 +3,10 @@ import 'package:transhipper/widgets/bogambilia.dart';
 import 'package:transhipper/widgets/cempa.dart';
 import 'package:transhipper/statements/search_bar.dart';
 import 'package:transhipper/pages/caminoview.dart';
+import 'package:transhipper/widgets/clavel.dart';
+import 'package:transhipper/widgets/girasol.dart';
 import 'package:transhipper/widgets/lilium.dart';
+import 'package:transhipper/widgets/margaritas.dart';
 import 'package:transhipper/widgets/nochebuena.dart';
 
 void main() => runApp(const MyApp());
@@ -36,6 +39,9 @@ class MyApp extends StatelessWidget {
             cardLilium(),
             cardNocheBuena(),
             cardBogambilia(),
+            cardClavel(),
+            cardGirasol(),
+            cardMargarita(),
           ],
         ),
       ),
