@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:transhipper/widgets/button.dart';
+import 'package:transhipper/widgets/secondrastreocard.dart';
+import 'package:transhipper/widgets/cardrastreo.dart';
+import 'package:transhipper/widgets/cuartarastreo.dart';
+import 'package:transhipper/widgets/tercerastreo.dart';
 
 Widget rastreo = Container(
-    child: const Card(
-  child: ListTile(
-    trailing: Text('Teya, Yucatán'),
-    subtitle: Text('Sotuta, Yucatán'),
-  ),
-));
+  child: Card(
+      child: Column(
+    children: <Widget>[
+      datacont1(),
+      const Text(
+          '\n \n Teya, Yucatán                              Sotuta, Yucatán \n \n',
+          style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 15,
+              fontWeight: FontWeight.bold)),
+      rastreoItem(),
+      rastreoItem2(),
+      rastreoItem3(),
+      rastreoItem4(),
+      buttonrastreo,
+    ],
+  )),
+);
 
-Container cardflor() {
+String description = "Cempasúchil ";
+
+String newDescription = description.replaceAll("|", "\n");
+
+Container datacont1() {
   return Container(
     child: Row(
       children: <Widget>[
@@ -23,11 +44,21 @@ Container cardflor() {
                         'https://www.gastrolabweb.com/u/fotografias/m/2022/9/27/f1280x720-35392_167067_4938.jpg')),
               )),
         ),
-        Row(
+        Column(
           children: [
-            ListTile(
-              subtitle: Text('En camino'),
-              trailing: Text('ServicioEntrega'),
+            Text(
+              newDescription,
+              style: const TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.bold),
+            ),
+            const Text(
+              "\n \n En camino            Entrega",
+              style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 15,
+                  color: Color.fromARGB(255, 0, 139, 42)),
             ),
           ],
         ),

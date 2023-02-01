@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transhipper/pages/rastreo.dart';
 import 'package:transhipper/widgets/bogambilia.dart';
 import 'package:transhipper/widgets/cempa.dart';
 import 'package:transhipper/statements/search_bar.dart';
@@ -31,17 +32,16 @@ class MyApp extends StatelessWidget {
         ),
         body: ListView(
           children: [
+            const SearchBad(),
+            cardCempa(),
+            cardLilium(),
+            cardNocheBuena(),
+            cardBogambilia(),
+            cardClavel(),
+            cardGirasol(),
+            cardMargarita(),
             infoGeneral,
-
-            // const SearchBad(),
-
-            // cardCempa(),
-            // cardLilium(),
-            // cardNocheBuena(),
-            // cardBogambilia(),
-            // cardClavel(),
-            // cardGirasol(),
-            //cardMargarita(),
+            rastreo,
           ],
         ),
       ),
