@@ -25,7 +25,12 @@ class ReportDescription extends StatelessWidget {
               ),
             ),
             const Text(
-                'Se solicita que agregue una breve descripcion del problema'),
+              'Se solicita que agregue una breve descripcion del problema',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+              textAlign: TextAlign.center,
+            ),
             const TextField(
               keyboardType: TextInputType.multiline,
               maxLines: 4,
@@ -50,28 +55,35 @@ class ReportDescription extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child:
-                        const Text('Cancelar', style: TextStyle(fontSize: 16)),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 255, 0, 68),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Cancelar',
+                          style: TextStyle(fontSize: 16)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 255, 0, 68),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _dialog(context);
-                    },
-                    child: const Text('Enviar', style: TextStyle(fontSize: 16)),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 70, 74, 182),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _dialog(context);
+                      },
+                      child:
+                          const Text('Enviar', style: TextStyle(fontSize: 16)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 70, 74, 182),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                       ),
                     ),
                   ),
@@ -89,7 +101,18 @@ void _dialog(BuildContext context) {
   showDialog(
       context: context,
       builder: (_) => AlertDialog(
-            title: Text('ReporteEnviadoCorrectamente'),
-            content: Text('this dialog is in sandbox'),
+            title: Text('Reporte Enviado'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(
+                  Icons.check_circle_outline_rounded,
+                  size: 150,
+                ),
+                Text('Su reporte se ha enviado correctamente')
+              ],
+            ),
+            elevation: 5.0,
           ));
 }
