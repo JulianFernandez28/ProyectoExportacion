@@ -22,20 +22,26 @@ class RegistroUsuario extends StatelessWidget {
           fit: StackFit.expand,
           children: <Widget>[
             const fondodegradado(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               children: [
-                const CircleImageLogo(),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40),
-                  child: Stack(
-                    children:const  [
-                      SingleChildScrollView(
-                        child: FormularioRegistro(),
-                      )
-                    ],
-                  ),
-                )
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircleImageLogo(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Stack(
+                        children: const [
+                          SingleChildScrollView(
+                            child: FormularioRegistro(),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ],
             )
           ],

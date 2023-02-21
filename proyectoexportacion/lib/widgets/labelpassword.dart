@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class LabelPassword extends StatelessWidget {
   const LabelPassword({
     Key? key,
-    required TextEditingController passwordController, required this.tipoValor, required this.iconsuffic,
+    required TextEditingController passwordController,
+    required this.tipoValor,
+    required this.iconsuffic,
   })  : _passwordController = passwordController,
         super(key: key);
 
@@ -13,10 +15,16 @@ class LabelPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: _passwordController,
       enableInteractiveSelection: false,
       obscureText: true,
+      validator: (value) {
+        if (value == null || value.isEmpty || value.length < 6) {
+          return 'Please enter a valid password';
+        }
+        return null;
+      },
       decoration: InputDecoration(
           fillColor: Colors.white,
           hintText: tipoValor,

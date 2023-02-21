@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/createnuttom.dart';
+import '../widgets/createbuttom.dart';
 
 class MenuPrincipal extends StatelessWidget {
   const MenuPrincipal({super.key});
@@ -10,8 +10,9 @@ class MenuPrincipal extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(backgroundColor: const Color.fromRGBO(35, 46, 141, 25)),
       body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          //fit: StackFit.expand,
           children: <Widget>[
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -32,13 +33,13 @@ class MenuPrincipal extends StatelessWidget {
                           colorIcon: Color.fromRGBO(7, 16, 99, 100),
                         ),
                         CreateButton(
-                          backfondo: Color.fromRGBO(188, 155, 208, 100),
+                          backfondo: Color.fromARGB(156, 180, 117, 219),
                           nameButton: 'Envios',
                           iconbutton: Icons.folder_copy_outlined,
                           colorIcon: Color.fromRGBO(87, 57, 124, 100),
                         ),
                         CreateButton(
-                          backfondo: Color.fromRGBO(255, 199, 91, 100),
+                          backfondo: Color.fromARGB(156, 244, 186, 71),
                           nameButton: 'Rastreo',
                           iconbutton: Icons.not_listed_location,
                           colorIcon: Color.fromRGBO(135, 107, 7, 100),

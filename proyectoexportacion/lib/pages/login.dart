@@ -28,22 +28,26 @@ class _LoginTranshipperState extends State<LoginTranshipper> {
         fit: StackFit.expand,
         children: <Widget>[
           const fondodegradado(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircleImageLogo(),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: Stack(
-                  children: const [
-                    SingleChildScrollView(
-                      child: FormularioLogin(),
+          ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircleImageLogo(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Stack(
+                        children: const [
+                          SingleChildScrollView(
+                            child: FormularioLogin(),
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),
-              )
-            ],
-          )
+              ])
         ],
       )),
     );
