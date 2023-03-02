@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+
 
 class CreateButton extends StatelessWidget {
-  const CreateButton({
-    required this.backfondo,
-    required this.nameButton,
-    required this.iconbutton,
-    required this.colorIcon,
-    Key? key,
-  }) : super(key: key);
+  const CreateButton(
+      {required this.backfondo,
+      required this.nameButton,
+      required this.iconbutton,
+      required this.colorIcon,
+      Key? key,
+      this.route = "#"})
+      : super(
+          key: key,
+        );
 
   final Color backfondo;
   final String nameButton;
   final IconData iconbutton;
   final Color colorIcon;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
+    final logger = new Logger();
     return Padding(
-      padding: const EdgeInsets.only(top: 30),
+      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
       child: SizedBox(
         height: 110,
-        width: 330,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
                 elevation: 5,
@@ -28,7 +34,9 @@ class CreateButton extends StatelessWidget {
                 backgroundColor: backfondo,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20))),
-            onPressed: (() {}),
+            onPressed: (() async {
+              Navigator.pushNamed(context, route);
+            }),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

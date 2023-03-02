@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logger/logger.dart';
 import 'package:proyectoexportacion/dtos/request/user_create_request.dart';
@@ -25,8 +26,9 @@ class UserProvider extends ChangeNotifier {
       }
     } else {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Error ${response.statusCode}")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("error registering data"),
+        ));
       }
     }
   }
@@ -43,13 +45,21 @@ class UserProvider extends ChangeNotifier {
         body: jsonEncode(user));
 
     if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      shared.setString('token', json['token']);
-      logger.d(shared.getString('token'));
+      if (context.mounted) {
+        final json = jsonDecode(response.body);
+        shared.setString('token', json['token']);
+        shared.setString('curp', json['curp']);
+        logger.d(shared.getString('curp'));
+
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Bienvenido " + json["userName"])));
+        Navigator.of(context).pushReplacementNamed('/Menu');
+      }
     } else {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Error ${response.statusCode}")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Login incorrect"),
+        ));
       }
     }
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
-import 'package:proyectoexportacion/pages/menuprincipal.dart';
+
 import 'package:proyectoexportacion/pages/registro.dart';
 import 'package:proyectoexportacion/providers/user_provider.dart';
 
@@ -47,6 +47,7 @@ class FormularioLogin extends StatelessWidget {
                 LabelText(
                   nameController: _emailController,
                   tipodevalor: 'Email',
+                  ejemploValor: "example@example.com",
                   iconsufflixIcon: Icons.email_outlined,
                 ),
                 const Divider(
@@ -103,18 +104,23 @@ class FormularioLogin extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(87, 57, 124, 100),
-                        fixedSize: const Size(double.maxFinite, 20.0),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                        backgroundColor: Color.fromRGBO(82, 38, 135, 1),
+                        fixedSize:
+                            const Size(double.maxFinite, double.infinity),
                         textStyle: const TextStyle(fontSize: 20),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
-                    onPressed: () {
+                    onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         context.read<UserProvider>().loginUser(
-                            _emailController.text, _passwordController.text,context);
+                            _emailController.text,
+                            _passwordController.text,
+                            context);
                       }
                     },
-                    child: const Text('Submit'),
+                    child: const Text('Iniciar Sesion'),
                   ),
                 ),
               ],

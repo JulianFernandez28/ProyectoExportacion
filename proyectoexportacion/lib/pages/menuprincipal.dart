@@ -31,6 +31,7 @@ class MenuPrincipal extends StatelessWidget {
                           nameButton: 'Nuevo Envio',
                           iconbutton: Icons.directions_boat_filled_outlined,
                           colorIcon: Color.fromRGBO(7, 16, 99, 100),
+                          route: '/envio',
                         ),
                         CreateButton(
                           backfondo: Color.fromARGB(156, 180, 117, 219),

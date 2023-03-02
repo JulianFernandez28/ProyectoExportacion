@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:proyectoexportacion/dtos/request/user_create_request.dart';
-import 'package:proyectoexportacion/pages/login.dart';
 
 import '../providers/user_provider.dart';
 import 'labelpassword.dart';
@@ -69,6 +68,7 @@ class FormularioRegistro extends StatelessWidget {
                 LabelText(
                   nameController: _nombreusuarioController,
                   tipodevalor: 'Nombre',
+                  ejemploValor: 'Fernando',
                   iconsufflixIcon: Icons.person_outlined,
                 ),
                 const SizedBox(
@@ -77,6 +77,7 @@ class FormularioRegistro extends StatelessWidget {
                 LabelText(
                   nameController: _apellidUsuarioController,
                   tipodevalor: 'Apellidos',
+                  ejemploValor: 'Buenfil',
                   iconsufflixIcon: Icons.person_outlined,
                 ),
                 const Divider(
@@ -97,7 +98,7 @@ class FormularioRegistro extends StatelessWidget {
                   },
                   decoration: InputDecoration(
                       fillColor: Colors.white,
-                      hintText: "Correo Electronico",
+                      hintText: "example@example.com",
                       labelText: "Correo Electronico",
                       suffixIcon: const Icon(Icons.email_outlined),
                       border: OutlineInputBorder(
@@ -118,7 +119,9 @@ class FormularioRegistro extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(87, 57, 124, 100),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 10),
+                          backgroundColor: Color.fromRGBO(82, 38, 135, 1),
                           fixedSize:
                               const Size(double.maxFinite, double.infinity),
                           textStyle: const TextStyle(fontSize: 20),
@@ -133,10 +136,12 @@ class FormularioRegistro extends StatelessWidget {
                               emailAddres: _emailController.text,
                               password: _passwordController.text,
                               numberPhone: '',
-                              rol: 'user');
+                              rol: 'User');
 
                           logger.d(user.emailAddres);
-                          context.read<UserProvider>().createUser(user,context);
+                          context
+                              .read<UserProvider>()
+                              .createUser(user, context);
                         }
                       },
                       child: const Text('Registrarse'),
