@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:proyectoexportacion/pages/report_description.dart';
 
 class Reports extends StatelessWidget {
   const Reports({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
+    String type;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(35, 46, 141, 25),
@@ -36,10 +39,10 @@ class Reports extends StatelessWidget {
                       ),
                     )),
               ),
-              Column(
+              const Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
+                  Text(
                       'Si el cargamento tuvo algún inconveniente durante el traslado o llegó en mal estado seleccione alguna de las siguientes opciones.',
                       style: TextStyle(
                         fontSize: 16.5,
@@ -53,13 +56,27 @@ class Reports extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          type = 'El envio no llegó';
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ReportDescription(type: type)));
+                        },
                         child: const Text('El envio no llegó')),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          type = 'El envio llegó en mal estado';
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ReportDescription(type: type)));
+                        },
                         child: const Text('El envio llegó en mal estado')),
                   ),
                   Padding(
