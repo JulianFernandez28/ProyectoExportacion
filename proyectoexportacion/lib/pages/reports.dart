@@ -18,24 +18,25 @@ class Reports extends StatelessWidget {
       ),
       body: Center(
         child: Container(
+          margin: const EdgeInsets.all(4.0),
           padding: const EdgeInsets.all(10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.all(2.0),
+                margin: const EdgeInsets.all(4.0),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color.fromARGB(255, 196, 143, 231),
                 ),
                 child: const Padding(
-                    padding: EdgeInsets.all(5.0),
+                    padding: EdgeInsets.all(10.0),
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: Icon(
                         Icons.report_outlined,
                         color: Colors.white,
-                        size: 100,
+                        size: 120,
                       ),
                     )),
               ),
@@ -51,7 +52,7 @@ class Reports extends StatelessWidget {
                 ],
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),

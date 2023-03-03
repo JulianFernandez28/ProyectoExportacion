@@ -3,8 +3,8 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:proyectoexportacion/providers/report_provider.dart';
 
-class Report_buttons extends StatelessWidget {
-  const Report_buttons({super.key, required this.reportType});
+class Report_body extends StatelessWidget {
+  const Report_body({super.key, required this.reportType});
   final String reportType;
 
   @override
@@ -12,8 +12,8 @@ class Report_buttons extends StatelessWidget {
     final formKey = GlobalKey<FormState>();
     final logger = Logger();
     final descriptionController = TextEditingController();
-    final int exampleID = 16;
-    final defaultStatus = 'Pendiente';
+    const int exampleID = 16;
+    const defaultStatus = 'Pendiente';
 
     return Container(
       margin: const EdgeInsets.all(10.0),
@@ -31,15 +31,23 @@ class Report_buttons extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-
           Form(
               key: formKey,
               child: Column(
                 children: [
                   TextFormField(
+                    maxLines: 4,
                     decoration: const InputDecoration(
                       label: Text('Descripción'),
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 128, 128, 128)),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        width: 2,
+                        color: Colors.grey,
+                      )),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           width: 2,
@@ -57,34 +65,16 @@ class Report_buttons extends StatelessWidget {
                   ),
                 ],
               )),
-          // TextField(
-          //     keyboardType: TextInputType.multiline,
-          //     maxLines: null,
-          //     decoration: const InputDecoration(
-          //       hintText: 'Describa su problema',
-          //       label: Text('Descripción'),
-          //       focusedBorder: OutlineInputBorder(
-          //         borderSide: BorderSide(
-          //           width: 2,
-          //           color: Color.fromARGB(255, 159, 109, 190),
-          //         ),
-          //       ),
-          //       enabledBorder: OutlineInputBorder(
-          //         borderSide: BorderSide(
-          //           width: 1,
-          //           color: Color.fromARGB(255, 188, 155, 208),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 255, 0, 68),
                       shape: RoundedRectangleBorder(

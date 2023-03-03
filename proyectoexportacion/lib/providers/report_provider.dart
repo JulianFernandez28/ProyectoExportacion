@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:proyectoexportacion/dtos/request/report_create_request.dart';
@@ -37,6 +36,7 @@ class ReportProvider extends ChangeNotifier {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error: ${response.statusCode}!')),
         );
+        
       }
     }
   }

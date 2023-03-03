@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyectoexportacion/widgets/Report_buttons.dart';
+import 'package:proyectoexportacion/widgets/Report_body.dart';
 class ReportDescription extends StatelessWidget {
   const ReportDescription({super.key, required this.type});
   final String type;
@@ -14,7 +14,7 @@ class ReportDescription extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
-      body: Report_buttons(reportType: type,),
+      body: Report_body(reportType: type,),
     );
   }
 }
