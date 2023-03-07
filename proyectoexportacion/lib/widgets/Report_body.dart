@@ -78,9 +78,9 @@ class Report_body extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 255, 0, 68),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      fixedSize: Size.fromHeight(75),
+                      fixedSize: Size.fromHeight(65),
                     ),
                     child:
                         const Text('Cancelar', style: TextStyle(fontSize: 20)),
@@ -105,9 +105,9 @@ class Report_body extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 70, 74, 182),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                       fixedSize: Size.fromHeight(75)
+                       fixedSize: Size.fromHeight(65)
                     ),
                     child: const Text('Enviar', style: TextStyle(fontSize: 20)),
                   ),
