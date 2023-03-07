@@ -18,6 +18,7 @@ class ReportProvider extends ChangeNotifier {
       Uri.parse('http://www.transhipper.somee.com/api/envios/reports'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer unknow'
       },
       body: jsonEncode(report),
     );
@@ -36,7 +37,6 @@ class ReportProvider extends ChangeNotifier {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error: ${response.statusCode}!')),
         );
-        
       }
     }
   }

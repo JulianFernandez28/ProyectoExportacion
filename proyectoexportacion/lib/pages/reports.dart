@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:proyectoexportacion/pages/report_description.dart';
+import '../widgets/report_option_buttons.dart';
 
 class Reports extends StatelessWidget {
   const Reports({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class Reports extends StatelessWidget {
                 margin: const EdgeInsets.all(4.0),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Color.fromARGB(255, 196, 143, 231),
+                  color: Color(0xFF3949AB),
                 ),
                 child: const Padding(
                     padding: EdgeInsets.all(10.0),
@@ -46,7 +46,7 @@ class Reports extends StatelessWidget {
                   Text(
                       'Si el cargamento tuvo algún inconveniente durante el traslado o llegó en mal estado seleccione alguna de las siguientes opciones.',
                       style: TextStyle(
-                        fontSize: 16.5,
+                        fontSize: 18,
                       ),
                       textAlign: TextAlign.center),
                 ],
@@ -54,37 +54,9 @@ class Reports extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          type = 'El envio no llegó';
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ReportDescription(type: type)));
-                        },
-                        child: const Text('El envio no llegó')),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          type = 'El envio llegó en mal estado';
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ReportDescription(type: type)));
-                        },
-                        child: const Text('El envio llegó en mal estado')),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Otro')),
-                  ),
+                  ReportOptionButtons(type: 'El envío no llegó', color: Colors.indigo.shade700),
+                  ReportOptionButtons(type: 'El envío llegó en mal estado', color: Colors.indigo.shade700),
+                  ReportOptionButtons(type: 'Otro', color: Colors.grey.shade600),
                 ],
               )
             ],
@@ -94,3 +66,4 @@ class Reports extends StatelessWidget {
     );
   }
 }
+
