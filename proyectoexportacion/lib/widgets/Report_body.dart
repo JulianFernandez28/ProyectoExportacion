@@ -92,7 +92,6 @@ class Report_body extends StatelessWidget {
                   padding: const EdgeInsets.all(4.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      _dialog(context);
                       if (formKey.currentState!.validate()) {
                         context.read<ReportProvider>().createReport(
                             exampleID,
@@ -121,21 +120,22 @@ class Report_body extends StatelessWidget {
   }
 }
 
-void _dialog(BuildContext context) => showDialog(
-    context: context,
-    builder: (_) => const AlertDialog(
-          title: Text('Reporte Enviado'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Icon(
-                Icons.check_circle_outline_rounded,
-                size: 150,
-                weight: 20,
-              ),
-              Text('Su reporte se ha enviado correctamente')
-            ],
-          ),
-          elevation: 5.0,
-        ));
+
+// void _dialog(BuildContext context) => showDialog(
+//     context: context,
+//     builder: (_) => const AlertDialog(
+//           title: Text('Reporte Enviado'),
+//           content: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             mainAxisAlignment: MainAxisAlignment.spaceAround,
+//             children: [
+//               Icon(
+//                 Icons.check_circle_outline_rounded,
+//                 size: 150,
+//                 weight: 20,
+//               ),
+//               Text('Su reporte se ha enviado correctamente')
+//             ],
+//           ),
+//           elevation: 5.0,
+//         ));
