@@ -6,12 +6,16 @@ import 'package:proyectoexportacion/dtos/responses/producto_response_dto.dart';
 import "package:http/http.dart" as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../dtos/responses/productbyid_response.dart';
+
 class ProductProvider extends ChangeNotifier {
   final logger = Logger();
 
   List<ProductResponseDto>? _products;
 
   List<ProductResponseDto>? get producs => _products;
+
+  
 
   Future getProducts() async {
     final local = await SharedPreferences.getInstance();

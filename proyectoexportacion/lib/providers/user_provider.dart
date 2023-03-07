@@ -23,6 +23,7 @@ class UserProvider extends ChangeNotifier {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("User created successfully")));
+        Navigator.of(context).pushReplacementNamed('/');
       }
     } else {
       if (context.mounted) {

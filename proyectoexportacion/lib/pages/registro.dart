@@ -31,7 +31,7 @@ class RegistroUsuario extends StatelessWidget {
                   children: [
                     const CircleImageLogo(),
                     Padding(
-                      padding: const EdgeInsets.only(top: 40),
+                      padding: const EdgeInsets.only(top: 20),
                       child: Stack(
                         children: const [
                           SingleChildScrollView(

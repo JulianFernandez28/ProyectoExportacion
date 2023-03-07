@@ -7,11 +7,10 @@ class CircleImageLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-        radius: 100.0,
-        backgroundColor: Colors.white,
-        child: Image.asset(
-          'images/logo.png',
-        ));
+    return const CircleAvatar(
+      radius: 100.0,
+      backgroundImage: AssetImage("images/logo.png"),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+    );
   }
 }

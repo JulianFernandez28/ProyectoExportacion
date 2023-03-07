@@ -36,7 +36,7 @@ class FormularioRegistro extends StatelessWidget {
                   blurRadius: 10.0,
                   spreadRadius: 0.8)
             ],
-            borderRadius: BorderRadius.circular(10.0)),
+            borderRadius: BorderRadius.circular(5.0)),
         child: ScrollNotificationObserver(
           child: Form(
             key: formKey,
@@ -119,9 +119,9 @@ class FormularioRegistro extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 10),
-                          backgroundColor: Color.fromRGBO(82, 38, 135, 1),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 15),
+                          backgroundColor: const Color.fromRGBO(82, 38, 135, 1),
                           fixedSize:
                               const Size(double.maxFinite, double.infinity),
                           textStyle: const TextStyle(fontSize: 20),

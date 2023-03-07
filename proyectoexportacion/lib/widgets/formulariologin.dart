@@ -38,7 +38,7 @@ class FormularioLogin extends StatelessWidget {
                 spreadRadius: 0.8,
               )
             ],
-            borderRadius: BorderRadius.circular(10.0)),
+            borderRadius: BorderRadius.circular(8.0)),
         child: ScrollNotificationObserver(
           child: Form(
             key: formKey,
@@ -47,7 +47,7 @@ class FormularioLogin extends StatelessWidget {
                 LabelText(
                   nameController: _emailController,
                   tipodevalor: 'Email',
-                  ejemploValor: "example@example.com",
+                  ejemploValor: "Transhipper@TRS.com",
                   iconsufflixIcon: Icons.email_outlined,
                 ),
                 const Divider(
@@ -104,9 +104,9 @@ class FormularioLogin extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                        backgroundColor: Color.fromRGBO(82, 38, 135, 1),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 15),
+                        backgroundColor: const Color.fromRGBO(82, 38, 135, 1),
                         fixedSize:
                             const Size(double.maxFinite, double.infinity),
                         textStyle: const TextStyle(fontSize: 20),

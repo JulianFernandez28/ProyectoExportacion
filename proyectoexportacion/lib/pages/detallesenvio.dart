@@ -22,6 +22,7 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
   String? productselect;
   String? transportSelect;
   String? crup;
+  var _curp = [];
   var _products = [];
   var _transporte = [];
 
@@ -162,11 +163,19 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
                       const SizedBox(
                         height: 15,
                       ),
-                      LabelText(
-                          nameController: encarrgadoController,
-                          tipodevalor: "Curp del encargado",
-                          ejemploValor: '',
-                          iconsufflixIcon: Icons.local_police),
+                      DropdownButtonFormField(
+                        items: _curp.map((e) {
+                          return DropdownMenuItem(
+                            value: e.toString(),
+                            child: Text(e),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            crup = value;
+                          });
+                        },
+                      ),
                       const SizedBox(
                         height: 15,
                       ),
@@ -213,10 +222,10 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
                           children: [
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         horizontal: 30, vertical: 15),
                                     backgroundColor:
-                                        Color.fromARGB(255, 211, 2, 96),
+                                        const Color.fromARGB(255, 211, 2, 2),
                                     textStyle: const TextStyle(
                                       fontSize: 20,
                                     ),
@@ -226,7 +235,7 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
                                 onPressed: () {
                                   formkey.currentState!.reset();
                                 },
-                                child: const Text("Cancelar")),
+                                child: const Text("Reiniciar")),
                             ElevatedButton(
                                 onPressed: () {
                                   if (formkey.currentState!.validate()) {
@@ -239,24 +248,20 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
                                         sourceLocation: origenController.text,
                                         destinationLocation:
                                             destinoController.text,
-                                        curpUserSubmit:
-                                            encarrgadoController.text,
+                                        curpUserSubmit: crup!,
                                         curpClient: clienteController.text,
                                         placaTransport: transportSelect!);
 
-                                    logger.d(envio.destinationLocation);
                                     context
                                         .read<EnvioProvider>()
                                         .createEnvio(envio, context);
-
-                                    Navigator.pop(context);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         horizontal: 30, vertical: 15),
                                     backgroundColor:
-                                        Color.fromARGB(255, 52, 11, 156),
+                                        const Color.fromARGB(255, 52, 11, 156),
                                     textStyle: const TextStyle(
                                       fontSize: 20,
                                     ),
@@ -297,6 +302,7 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
 
       setState(() {
         crup = en;
+        _curp.add(crup);
         _products = json;
       });
     } else {
