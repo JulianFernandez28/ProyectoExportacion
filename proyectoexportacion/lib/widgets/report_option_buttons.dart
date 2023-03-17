@@ -14,7 +14,7 @@ class ReportOptionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(10.0),
       child: ElevatedButton(
           onPressed: () {
             Navigator.push(
@@ -23,14 +23,19 @@ class ReportOptionButtons extends StatelessWidget {
                     builder: (context) => ReportDescription(type: type)));
           },
           style: ElevatedButton.styleFrom(
-            fixedSize: Size(350, 80),
-            textStyle: TextStyle(fontSize: 20),
+            fixedSize: Size(310, double.infinity),
+            textStyle: TextStyle(fontSize: 18),
             backgroundColor: color,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             shadowColor: Colors.black,
-            elevation: 5,
+            foregroundColor: Colors.white,
+            elevation: 3,
           ),
-          child: Text(type)),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text(type, textAlign: TextAlign.center,),
+          )),
     );
   }
 }

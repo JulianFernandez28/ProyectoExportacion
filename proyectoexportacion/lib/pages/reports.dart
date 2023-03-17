@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proyectoexportacion/pages/report_description.dart';
 import '../widgets/report_option_buttons.dart';
 
 class Reports extends StatelessWidget {
@@ -52,11 +51,11 @@ class Reports extends StatelessWidget {
                 ],
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ReportOptionButtons(type: 'El envío no llegó', color: Colors.indigo.shade700),
                   ReportOptionButtons(type: 'El envío llegó en mal estado', color: Colors.indigo.shade700),
-                  ReportOptionButtons(type: 'Otro', color: Colors.grey.shade600),
+                  ReportOptionButtons(type: 'Otro', color: Colors.indigo.shade300),
                 ],
               )
             ],

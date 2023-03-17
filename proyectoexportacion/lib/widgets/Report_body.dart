@@ -20,19 +20,19 @@ class Report_body extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(reportType.toUpperCase(), style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900,), textAlign: TextAlign.center,
+          Text(reportType.toUpperCase(), style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700,), textAlign: TextAlign.center,
           ),
           const Text(
             'Se solicita que agregue una breve descripcion del problema',
             style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w400
+              fontSize: 18, fontWeight: FontWeight.w400
             ),
             textAlign: TextAlign.center,
           ),
           Form(
               key: formKey,
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 30),
+                margin: const EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
                   children: [
                     TextFormField(
@@ -76,11 +76,11 @@ class Report_body extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 255, 0, 68),
+                      backgroundColor: const Color.fromARGB(255, 255, 0, 68),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                       ),
-                      fixedSize: Size.fromHeight(65),
+                      fixedSize: const Size.fromHeight(50),
                     ),
                     child:
                         const Text('Cancelar', style: TextStyle(fontSize: 20)),
@@ -102,11 +102,11 @@ class Report_body extends StatelessWidget {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 70, 74, 182),
+                      backgroundColor: const Color.fromARGB(255, 70, 74, 182),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                       ),
-                       fixedSize: Size.fromHeight(65)
+                       fixedSize: const Size.fromHeight(50)
                     ),
                     child: const Text('Enviar', style: TextStyle(fontSize: 20)),
                   ),
