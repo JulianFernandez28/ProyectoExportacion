@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:proyectoexportacion/dtos/request/user_create_request.dart';
@@ -37,7 +38,7 @@ class FormularioRegistro extends StatelessWidget {
                   spreadRadius: 0.8)
             ],
             borderRadius: BorderRadius.circular(5.0)),
-        child: ScrollNotificationObserver(
+        child: SingleChildScrollView(
           child: Form(
             key: formKey,
             child: Column(
@@ -49,11 +50,15 @@ class FormularioRegistro extends StatelessWidget {
                   autofocus: false,
                   autocorrect: false,
                   validator: (value) {
-                    if (value == null || value.isEmpty || value.length < 18) {
+                    if (value == null || value.isEmpty || value.length != 18) {
                       return 'Please enter a valid CURP';
                     }
                     return null;
                   },
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
+                    LengthLimitingTextInputFormatter(18)
+                  ],
                   decoration: InputDecoration(
                       fillColor: Colors.white,
                       hintText: "CURP",

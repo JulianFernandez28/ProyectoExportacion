@@ -22,13 +22,12 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
   String? productselect;
   String? transportSelect;
   String? crup;
-  var _curp = [];
+  final _curp = [];
   var _products = [];
   var _transporte = [];
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getProducts();
     getTransporte();
@@ -52,10 +51,7 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
       appBar: AppBar(
         title: const Text("Detalles del envio"),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(35, 46, 141, 25),
-        leading: const BackButton(
-          color: Colors.white,
-        ),
+        backgroundColor: const Color.fromARGB(231, 15, 28, 141),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -221,22 +217,6 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 30, vertical: 15),
-                                    backgroundColor:
-                                        const Color.fromARGB(255, 211, 2, 2),
-                                    textStyle: const TextStyle(
-                                      fontSize: 20,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10))),
-                                onPressed: () {
-                                  formkey.currentState!.reset();
-                                },
-                                child: const Text("Reiniciar")),
-                            ElevatedButton(
                                 onPressed: () {
                                   if (formkey.currentState!.validate()) {
                                     var envio = EnvioCreateRequestDto(
@@ -259,7 +239,7 @@ class _NuevoEnvioState extends State<NuevoEnvio> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 30, vertical: 15),
+                                        horizontal: 20, vertical: 15),
                                     backgroundColor:
                                         const Color.fromARGB(255, 52, 11, 156),
                                     textStyle: const TextStyle(

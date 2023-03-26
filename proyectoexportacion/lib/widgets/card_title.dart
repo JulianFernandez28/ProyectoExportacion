@@ -18,7 +18,7 @@ class TitleCards extends StatelessWidget {
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(1.0),
               child: ListTile(
                 leading: Icon(icons),
                 title: Text("$title"),

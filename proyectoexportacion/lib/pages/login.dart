@@ -21,7 +21,7 @@ class _LoginTranshipperState extends State<LoginTranshipper> {
         title: const Text(
           'Iniciar Sesion',
         ),
-        backgroundColor: const Color.fromRGBO(35, 46, 141, 25),
+        backgroundColor: const Color.fromARGB(231, 15, 28, 141),
       ),
       body: SafeArea(
           child: Stack(

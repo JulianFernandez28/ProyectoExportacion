@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "38732621878",
+    "project_id": "docstranshipper",
+    "storage_bucket": "docstranshipper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38732621878:android:0dd811829449e87c6b1097",
+        "android_client_info": {
+          "package_name": "com.example.proyectoexportacion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38732621878-4ph5d3nu7h560b2gddio9miic3h9rdhc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhzXVJ6K5Z1L1IwbZr8JLdA-2NOkHOS0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38732621878-4ph5d3nu7h560b2gddio9miic3h9rdhc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

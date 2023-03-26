@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'package:proyectoexportacion/dtos/responses/productbyid_response.dart';
+import 'package:proyectoexportacion/dtos/responses/envio_response_dto.dart';
 
+import '../env/datos.dart';
 import '../providers/envio_provides.dart';
+import '../screens/emptys/emptydata.dart';
 import '../widgets/buttons_actions.dart';
 import '../widgets/card_title.dart';
 
@@ -15,6 +17,7 @@ class EnvioAllDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 221, 221, 221),
         appBar: AppBar(
           centerTitle: true,
           title: const Text("Informacion Envio"),
@@ -34,7 +37,9 @@ class EnvioAllDetails extends StatelessWidget {
           child: FutureBuilder<EnvioAllResponseDto>(
             future: EnvioProvider().getEnviobyId(idenvio),
             builder: (context, envio) {
+              
               var image = envio.data?.product.image;
+
               return ListView.builder(
                   itemCount: 1,
                   itemBuilder: (context, index) => Padding(
@@ -52,19 +57,26 @@ class EnvioAllDetails extends StatelessWidget {
                                 ),
                               ),
                               Card(
-                                color: const Color.fromARGB(255, 223, 223, 223),
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                elevation: 2,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                                 child: Column(
                                   children: [
                                     Row(
                                       children: [
-                                        SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.3,
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                          ),
                                           child: CachedNetworkImage(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.29,
+                                            height: 100,
                                             fit: BoxFit.cover,
                                             imageUrl: "$image",
                                             placeholder: (context, url) =>
@@ -89,47 +101,29 @@ class EnvioAllDetails extends StatelessWidget {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
-                                                  Text("${envio.data?.title}"),
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(vertical: 5),
+                                                    child: Text(
+                                                      "${envio.data?.title} ${envio.data?.product.name}",
+                                                      style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                      ),
+                                                    ),
+                                                  ),
                                                   Text(
                                                       "Tipo: ${envio.data?.product.name}"),
                                                   Text(
-                                                      "Medidas: ${envio.data?.measures}")
+                                                      "Medidas: ${envio.data?.measures}"),
                                                 ],
                                               ),
                                             ),
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.4,
-                                            child: Center(
-                                              child: Text(
-                                                  "${envio.data?.sourceLocation}"),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.4,
-                                            child: Center(
-                                              child: Text(
-                                                  "${envio.data?.destinationLocation}"),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
                                   ],
                                 ),
                               ),
@@ -137,7 +131,10 @@ class EnvioAllDetails extends StatelessWidget {
                                 height: 10,
                               ),
                               Card(
-                                color: Color.fromARGB(255, 233, 233, 233),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                elevation: 2,
+                                color: const Color.fromARGB(255, 255, 255, 255),
                                 child: Column(
                                   children: [
                                     const TitleCards(
@@ -179,7 +176,9 @@ class EnvioAllDetails extends StatelessWidget {
                                 height: 10,
                               ),
                               Card(
-                                color: Color.fromARGB(255, 233, 233, 233),
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: Column(
                                   children: [
                                     const TitleCards(
@@ -203,9 +202,9 @@ class EnvioAllDetails extends StatelessWidget {
                                                 Text(
                                                     "Fecha de envio: ${envio.data?.createOn}"),
                                                 Text(
-                                                    "Placa del vehiculo: ${envio.data?.placaTransport}"),
+                                                    "Curp del cliente: ${envio.data?.curpClient}"),
                                                 Text(
-                                                    "Curp del cliente: ${envio.data?.curpUserSubmit}"),
+                                                    "Direccion: ${envio.data?.destinationLocation}")
                                               ],
                                             ),
                                           ),
@@ -215,9 +214,60 @@ class EnvioAllDetails extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              ButtonsActions(
-                                route: "/Menu",
-                              )
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Center(
+                                          child: ElevatedButton(
+                                            
+                                              style: ElevatedButton.styleFrom(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 30,
+                                                      vertical: 15),
+                                                  backgroundColor:
+                                                      const Color.fromARGB(
+                                                          255, 52, 11, 156),
+                                                  textStyle: const TextStyle(
+                                                    fontSize: 20,
+                                                  ),
+                                                  shape:
+                                                      RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10))),
+                                              onPressed: () {
+                                                Datos.nameProduct =
+                                                    envio.data!.product.name;
+                                                Datos.sourceLocation = envio
+                                                    .data!.sourceLocation;
+                                                Datos.destinoLocation = envio
+                                                    .data!
+                                                    .destinationLocation;
+                                                Datos.imageUrl =
+                                                    envio.data!.product.image;
+                                                Datos.count = envio.data!.id;
+                                                Navigator.of(context)
+                                                    .pushNamed('/rastreo');
+                                              },
+                                              child: const Text("Rastreo")),
+                                        ),
+                                      ],
+                                    ),
+                                    ButtonsActions(
+                                      route: "/Menu",
+                                    )
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
