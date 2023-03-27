@@ -25,10 +25,10 @@ class _UserAccountState extends State<UserAccount> {
     super.initState();
   }
 
-  void _actualizardatos() {
-    setState(() {
-      Provider.of<UserProvider>(context, listen: false).getUser(User.curp);
-    });
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Provider.of<UserProvider>(context, listen: false).getUser(User.curp);
   }
 
   Future<void> logOut() async {
@@ -96,7 +96,7 @@ class _UserAccountState extends State<UserAccount> {
                             child: ListView.builder(
                               itemCount: 1,
                               itemBuilder: (context, index) {
-                                final user = userProvider.user!;
+                                final user = userProvider.user;
 
                                 return Padding(
                                   padding: const EdgeInsets.all(15.0),
@@ -106,7 +106,7 @@ class _UserAccountState extends State<UserAccount> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       InfoUser(
-                                        dato: user.curp,
+                                        dato: user!.curp,
                                         tipo: "Curp",
                                       ),
                                       const SizedBox(height: 16),
@@ -146,7 +146,8 @@ class _UserAccountState extends State<UserAccount> {
                         onPressed: () => logOut(),
                         style: ElevatedButton.styleFrom(
                             minimumSize: const Size(30, 40),
-                            backgroundColor: const Color.fromARGB(255, 230, 16, 16),
+                            backgroundColor:
+                                const Color.fromARGB(255, 230, 16, 16),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20))),
                         child: const Text("Cerrar sesion"),
@@ -163,8 +164,6 @@ class _UserAccountState extends State<UserAccount> {
                                   borderRadius: BorderRadius.circular(20))),
                           onPressed: () async {
                             await _onBackPress(userd!);
-
-                            _actualizardatos();
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.min,

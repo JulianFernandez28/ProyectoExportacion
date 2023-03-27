@@ -62,6 +62,7 @@ class UserProvider extends ChangeNotifier {
         User.curp = json['curp'];
 
         loadData(json['token']);
+        isloading=false;
 
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("Bienvenido " + json["userName"])));
@@ -80,7 +81,6 @@ class UserProvider extends ChangeNotifier {
     Map<String, dynamic> decodedToken = JwtDecoder.decode(json);
     User.role = decodedToken[
         "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-    logger.d(User.role);
   }
 
   Future getUser(String curp) async {

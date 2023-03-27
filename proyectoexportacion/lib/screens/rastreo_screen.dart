@@ -1,11 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:proyectoexportacion/widgets/card_title.dart';
 
 import '../env/datos.dart';
 import '../providers/rastreo_provider.dart';
-import '../widgets/create_buttons.dart';
 import '../widgets/rastreo/location_rastreo_card.dart';
 import '../widgets/rastreo/statusshipping_rastreo.dart';
 import '../widgets/rastreo/topcard.dart';
@@ -25,6 +22,7 @@ class _RastreoState extends State<Rastreo> {
     super.initState();
   }
 
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +30,13 @@ class _RastreoState extends State<Rastreo> {
         centerTitle: true,
         title: const Text('Rastreo'),
         backgroundColor: const Color.fromARGB(231, 15, 28, 141),
-        leading: const BackButton(color: Color.fromARGB(255, 255, 255, 255)),
+        leading: BackButton(
+          color: Color.fromARGB(255, 255, 255, 255),
+          onPressed: () {
+            Datos.estado = 0;
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

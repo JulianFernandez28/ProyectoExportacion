@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -9,6 +11,8 @@ import 'package:proyectoexportacion/providers/product_provider.dart';
 import 'package:proyectoexportacion/widgets/card_title.dart';
 import 'package:proyectoexportacion/widgets/labeltext.dart';
 import '../dtos/request/envio_create_request.dart';
+import '../services/select_document.dart';
+import '../services/upload_document.dart';
 import '../widgets/shipping/card_details_user.dart';
 import '../widgets/shipping/detail_flor_shipping.dart';
 
@@ -22,6 +26,7 @@ class NewShipping extends StatefulWidget {
 class _NewShippingState extends State<NewShipping> {
   String? productSelect;
   String? transporteSelect;
+  PlatformFile? documentUp;
 
   List<ProductResponseDto> _products = [];
 
@@ -31,18 +36,7 @@ class _NewShippingState extends State<NewShipping> {
     _products = Provider.of<ProductProvider>(context).producs ?? [];
   }
 
-  void openFileS() async {
-    FilePickerResult? resultfile = await FilePicker.platform.pickFiles();
-
-    if (resultfile != null) {
-      PlatformFile file = resultfile.files.first;
-      print(file.name);
-      print(file.bytes);
-      print(file.extension);
-      print(file.path);
-    }
-  }
-
+  @override
   final logger = Logger();
   final formkey1 = GlobalKey<FormState>();
   final formkey2 = GlobalKey<FormState>();
@@ -54,6 +48,7 @@ class _NewShippingState extends State<NewShipping> {
   final estadoController = TextEditingController();
   final municipioController = TextEditingController();
   final calleController = TextEditingController();
+  String? linkDocument;
 
   @override
   Widget build(BuildContext context) {
@@ -128,11 +123,42 @@ class _NewShippingState extends State<NewShipping> {
                                 tipodevalor: "Ubicacion de envio",
                                 iconsufflixIcon: Icons.location_on_outlined,
                                 ejemploValor: ""),
-                            ElevatedButton(
-                                onPressed: () {
-                                  openFileS();
-                                },
-                                child: Text("Selecciionar docucmento"))
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(),
+                                
+                                
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: StatefulBuilder(
+                                        builder: (context, setState) {
+                                          if (documentUp?.name != null) {
+                                            return Text('${documentUp?.name}');
+                                          }
+                                          return const Text("Certificado Fitosanitario");
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      subirDocumento(context);
+                                    },
+                                    child: Text("Seleccionar"),
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         )),
                   ),
@@ -168,7 +194,8 @@ class _NewShippingState extends State<NewShipping> {
                     calleController.text,
                 curpUserSubmit: User.curp,
                 curpClient: curpUserController.text,
-                placaTransport: "AAA-000-A");
+                placaTransport: "AAA-000-A",
+                document: linkDocument!);
 
             print(envio.toJson());
             await showSummaryDialog(context, envio);
@@ -179,6 +206,70 @@ class _NewShippingState extends State<NewShipping> {
         },
         child: const Icon(Icons.save),
       ),
+    );
+  }
+
+  void subirDocumento(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: Text("Seleccion de documento"),
+              content: Container(
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Builder(
+                      builder: (context) {
+                        if (documentUp?.name != null) {
+                          return Text('${documentUp?.name}');
+                        }
+                        return Text("Documento Fitosanitario");
+                      },
+                    ),
+                    
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final document = await openFileS();
+                        setState(() {
+                          documentUp = document;
+                        });
+                      },
+                      child: Text("Agregar"),
+                    ),
+                    const SizedBox(height: 10),
+                    
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Cancelar'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                ElevatedButton(
+                  child: Text('Aceptar'),
+                  onPressed: () async {
+                    final l = await uploadIImageFirebase(documentUp!);
+                    setState(() {
+                      linkDocument = l;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }
@@ -202,6 +293,8 @@ showSummaryDialog(BuildContext context, EnvioCreateRequestDto envio) {
             Text('Ubicacion origen: ${envio.sourceLocation}'),
             const SizedBox(height: 10.0),
             Text('CURP del cliente: ${envio.curpClient}'),
+            const SizedBox(height: 10.0),
+            Text('Documento: ${envio.document}'),
             const SizedBox(height: 10.0),
             Text('Ubicacion de destino: ${envio.destinationLocation}'),
           ],

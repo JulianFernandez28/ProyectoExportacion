@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final envioCreateRequestDto = envioCreateRequestDtoFromJson(jsonString);
+
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
@@ -12,6 +16,7 @@ class EnvioCreateRequestDto {
         required this.weightContent,
         required this.measures,
         required this.sourceLocation,
+        required this.document,
         required this.destinationLocation,
         required this.curpUserSubmit,
         required this.curpClient,
@@ -23,6 +28,7 @@ class EnvioCreateRequestDto {
     final String weightContent;
     final String measures;
     final String sourceLocation;
+    final String document;
     final String destinationLocation;
     final String curpUserSubmit;
     final String curpClient;
@@ -34,6 +40,7 @@ class EnvioCreateRequestDto {
         weightContent: json["weightContent"],
         measures: json["measures"],
         sourceLocation: json["sourceLocation"],
+        document: json["document"],
         destinationLocation: json["destinationLocation"],
         curpUserSubmit: json["curpUserSubmit"],
         curpClient: json["curpClient"],
@@ -46,6 +53,7 @@ class EnvioCreateRequestDto {
         "weightContent": weightContent,
         "measures": measures,
         "sourceLocation": sourceLocation,
+        "document": document,
         "destinationLocation": destinationLocation,
         "curpUserSubmit": curpUserSubmit,
         "curpClient": curpClient,

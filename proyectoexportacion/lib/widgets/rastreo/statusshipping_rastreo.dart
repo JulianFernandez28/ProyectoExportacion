@@ -42,42 +42,62 @@ class StatusShippinRastreo extends StatelessWidget {
             color: Colors.grey,
             thickness: 1,
           ),
-          Consumer<RastreoProvider>(
-              builder: (context, rastreoProvider, child) => rastreoProvider
-                      .isLoading
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.5,
-                      child: ListView.builder(
-                        itemCount: rastreoProvider.rastreo?.length,
-                        itemBuilder: (context, index) {
-                          final rastreo = rastreoProvider.rastreo![index];
-                          final fecha = rastreo.dateTimeActual
-                              .toString()
-                              .substring(0, 19);
-                          Datos.estado = rastreo.statusEnvio;
-                          return Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            margin: const EdgeInsets.all(4),
-                            child: ListTile(
-                              leading: const Icon(
-                                Icons.check_circle_rounded,
-                                color: Colors.lightBlue,
-                              ),
-                              title: Text(rastreo.description),
-                              subtitle: Text(
-                                fecha,
-                                style: const TextStyle(
-                                    color: Color.fromARGB(255, 29, 52, 226)),
-                              ),
-                            ),
-                          );
-                        },
+          Consumer<RastreoProvider>(builder: (context, rastreoProvider, child) {
+            if (rastreoProvider.isLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (rastreoProvider.rastreo!.isEmpty) {
+              return Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    margin: const EdgeInsets.all(4),
+                    child: const ListTile(
+                      leading:  Icon(
+                        Icons.check_circle_rounded,
+                        color: Colors.lightBlue,
                       ),
-                    )),
+                      title: Text("En revision"),
+                      subtitle: Text(
+                        "",
+                        style:  TextStyle(
+                            color: Color.fromARGB(255, 29, 52, 226)),
+                      ),
+                    ),
+                  );
+            }
+
+            return SizedBox(
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: ListView.builder(
+                itemCount: rastreoProvider.rastreo?.length,
+                itemBuilder: (context, index) {
+                  final rastreo = rastreoProvider.rastreo![index];
+                  final fecha =
+                      rastreo.dateTimeActual.toString().substring(0, 19);
+                  Datos.estado = rastreo.statusEnvio;
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    margin: const EdgeInsets.all(4),
+                    child: ListTile(
+                      leading: const Icon(
+                        Icons.check_circle_rounded,
+                        color: Colors.lightBlue,
+                      ),
+                      title: Text(rastreo.description),
+                      subtitle: Text(
+                        fecha,
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 29, 52, 226)),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
+          }),
         ],
       ),
     );

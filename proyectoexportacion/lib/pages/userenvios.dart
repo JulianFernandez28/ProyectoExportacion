@@ -5,8 +5,33 @@ import 'package:proyectoexportacion/pages/envioalldetails.dart';
 
 import 'package:proyectoexportacion/providers/envio_provides.dart';
 
-class UserEnvios extends StatelessWidget {
+import '../env/datos.dart';
+
+class UserEnvios extends StatefulWidget {
   const UserEnvios({super.key});
+
+  @override
+  State<UserEnvios> createState() => _UserEnviosState();
+}
+
+class _UserEnviosState extends State<UserEnvios> {
+  bool _isInit = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _isInit = false;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isInit) {
+      setState(() {
+        Provider.of<EnvioProvider>(context).getEnvios();
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +77,7 @@ class UserEnvios extends StatelessWidget {
                                     borderRadius:
                                         const BorderRadius.all(Radius.zero),
                                     onTap: () {
+                                      Datos.count = idEnvio;
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

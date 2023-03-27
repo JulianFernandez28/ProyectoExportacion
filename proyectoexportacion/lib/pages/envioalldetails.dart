@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:proyectoexportacion/dtos/responses/envio_response_dto.dart';
+import 'package:proyectoexportacion/pages/reports.dart';
 
 import '../env/datos.dart';
 import '../providers/envio_provides.dart';
@@ -25,7 +26,14 @@ class EnvioAllDetails extends StatelessWidget {
           actions: [
             IconButton(
                 padding: const EdgeInsets.only(right: 10),
-                onPressed: () {},
+                onPressed: () {
+                  print("${Datos.count}");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Reports(),
+                      ));
+                },
                 icon: const Icon(
                   Icons.report,
                   color: Color.fromARGB(255, 241, 0, 0),
@@ -37,7 +45,6 @@ class EnvioAllDetails extends StatelessWidget {
           child: FutureBuilder<EnvioAllResponseDto>(
             future: EnvioProvider().getEnviobyId(idenvio),
             builder: (context, envio) {
-              
               var image = envio.data?.product.image;
 
               return ListView.builder(
@@ -226,7 +233,6 @@ class EnvioAllDetails extends StatelessWidget {
                                       children: [
                                         Center(
                                           child: ElevatedButton(
-                                            
                                               style: ElevatedButton.styleFrom(
                                                   padding: const EdgeInsets
                                                           .symmetric(
@@ -238,20 +244,17 @@ class EnvioAllDetails extends StatelessWidget {
                                                   textStyle: const TextStyle(
                                                     fontSize: 20,
                                                   ),
-                                                  shape:
-                                                      RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10))),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
                                               onPressed: () {
                                                 Datos.nameProduct =
                                                     envio.data!.product.name;
-                                                Datos.sourceLocation = envio
-                                                    .data!.sourceLocation;
+                                                Datos.sourceLocation =
+                                                    envio.data!.sourceLocation;
                                                 Datos.destinoLocation = envio
-                                                    .data!
-                                                    .destinationLocation;
+                                                    .data!.destinationLocation;
                                                 Datos.imageUrl =
                                                     envio.data!.product.image;
                                                 Datos.count = envio.data!.id;
