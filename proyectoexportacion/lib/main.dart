@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:proyectoexportacion/pages/login.dart';
 import 'package:proyectoexportacion/pages/menuprincipal.dart';
 import 'package:proyectoexportacion/pages/registro.dart';
+import 'package:proyectoexportacion/pages/report_info.dart';
 import 'package:proyectoexportacion/pages/reports.dart';
 import 'package:proyectoexportacion/providers/report_provider.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           title: 'Transhipper',
           initialRoute: '/',
           routes: <String, WidgetBuilder>{
-            '/': (context) => const Reports(),
+            '/': (context) => const ReportInfo(),
           },
         );
       },

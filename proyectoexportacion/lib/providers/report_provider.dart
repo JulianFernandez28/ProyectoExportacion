@@ -2,15 +2,25 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:proyectoexportacion/dtos/request/report_create_request.dart';
+import 'package:proyectoexportacion/dtos/response/response_list_envios.dart';
 import 'package:http/http.dart' as http;
 
 class ReportProvider extends ChangeNotifier {
+  bool isLoading = true;
   final logger = Logger();
   final String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDdXJwIjoiRkVDRjAzMDhIWU5STFJBOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJGcmVkZGkgSnVsaWFuIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiSnVsaWFuQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJlYWU1MDI4Mi00MzE3LTQ5YjItYjRlNi0xMzIwNjEyYjhhMTIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiJNYXIgVHVlIDIwMjMgMTk6NDg6MTYgUE0iLCJuYmYiOjE2Nzg3MzY4OTYsImV4cCI6MTY3ODg0MTI5NiwiaXNzIjoiICIsImF1ZCI6IiAifQ.CMXD1hJIN_h_IiGUr6HXRI2QJUO7d0u3nuaxqajgkxw";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDdXJwIjoiRkVDRjAzMDhIWU5STFJBOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJGcmVkZGkgSnVsaWFuICIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Ikp1bGlhbkBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiY2YxZTUyODItOWJmMS00MDE0LWE0MzUtMTg3NWQxOWUwZDJiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9leHBpcmF0aW9uIjoiTWFyIFRodSAyMDIzIDA3OjA3OjQ0IEFNIiwibmJmIjoxNjgwMDczNjY0LCJleHAiOjE2ODAxNzgwNjQsImlzcyI6IiAiLCJhdWQiOiIgIn0.6S30v3U4BA6dNuPqB2EqIS0qpVWMFZIeNtCpDDCA3L0";
 
-  Future createReport(int envioId, String typeReport, String description,
-      String status, BuildContext context) async {
+  List<ReportResponseDto>? _reports;
+
+  List<ReportResponseDto>? get reports => _reports;
+
+  Future createReport(
+      int envioId,
+      String typeReport,
+      String description, //post
+      String status,
+      BuildContext context) async {
     final report = ReportCreateRequestDto(
         envioId: envioId,
         typeReport: typeReport,
@@ -40,6 +50,27 @@ class ReportProvider extends ChangeNotifier {
           SnackBar(content: Text('Error: ${response.statusCode}!')),
         );
       }
+    }
+  }
+
+  Future getEnvioId(int envioID) async {
+    final response = await http.get(
+        Uri.parse(
+            'http://www.transhipper.somee.com/api/envios/reports/envio/$envioID'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token'
+        });
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      final List<dynamic> data = json;
+
+      _reports = data.map((e) => ReportResponseDto.fromJson(e)).toList();
+      isLoading = false;
+
+      notifyListeners();
+    } else {
+      throw Exception('Error');
     }
   }
 }
