@@ -26,7 +26,7 @@ class RastreoResponseDto {
     final DateTime updateOn;
     final int id;
     final int envioId;
-    final String actualLocation;
+    late final String actualLocation;
     final String lastLocation;
     final String description;
     final DateTime dateTimeActual;

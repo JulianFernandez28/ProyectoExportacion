@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class WelcomeWidget extends StatelessWidget {
+import '../models/user.dart';
+import '../providers/user_provider.dart';
+
+class WelcomeWidget extends StatefulWidget {
   const WelcomeWidget({super.key});
+
+  @override
+  State<WelcomeWidget> createState() => _WelcomeWidgetState();
+}
+
+class _WelcomeWidgetState extends State<WelcomeWidget> {
+  @override
+  void initState() {
+    Provider.of<UserProvider>(context, listen: false).getUser(User.curp);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

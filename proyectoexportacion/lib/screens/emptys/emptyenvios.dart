@@ -19,9 +19,15 @@ class EmptyEnvios extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const Text(
-                "Sin envios",
+                "Codigo de envio no encontrado",
                 style: TextStyle(fontSize: 23, fontStyle: FontStyle.italic),
               ),
+              ElevatedButton( style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(120, 40),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 65, 33, 243),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20))),onPressed: () => Navigator.pop(context), child: Text("Regresar"))
             ]),
           );
         }

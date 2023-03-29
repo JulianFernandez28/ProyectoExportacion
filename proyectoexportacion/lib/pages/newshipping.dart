@@ -131,11 +131,10 @@ class _NewShippingState extends State<NewShipping> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 border: Border.all(),
-                                
-                                
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     child: SizedBox(
@@ -145,7 +144,8 @@ class _NewShippingState extends State<NewShipping> {
                                           if (documentUp?.name != null) {
                                             return Text('${documentUp?.name}');
                                           }
-                                          return const Text("Certificado Fitosanitario");
+                                          return const Text(
+                                              "Certificado Fitosanitario");
                                         },
                                       ),
                                     ),
@@ -176,6 +176,7 @@ class _NewShippingState extends State<NewShipping> {
         ),
       )),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(231, 15, 28, 141),
         onPressed: () async {
           if (formkey1.currentState!.validate() ||
               formkey2.currentState!.validate()) {
@@ -232,31 +233,61 @@ class _NewShippingState extends State<NewShipping> {
                         return Text("Documento Fitosanitario");
                       },
                     ),
-                    
                     const SizedBox(height: 10),
                     ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(231, 15, 28, 141),
+                        ),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                          const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                        ),
+                      ),
                       onPressed: () async {
                         final document = await openFileS();
                         setState(() {
                           documentUp = document;
                         });
                       },
-                      child: Text("Agregar"),
+                      child: const Text("Agregar"),
                     ),
                     const SizedBox(height: 10),
-                    
                   ],
                 ),
               ),
               actions: <Widget>[
                 TextButton(
-                  child: Text('Cancelar'),
+                  child: Text('Cancelar', style: TextStyle(
+                    color: Color.fromARGB(255, 209, 26, 26)
+                  ),),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
                 ElevatedButton(
-                  child: Text('Aceptar'),
+                  style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(231, 15, 28, 141),
+                        ),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                          const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                        ),
+                      ),
+                  child: Text('Subir'),
                   onPressed: () async {
                     final l = await uploadIImageFirebase(documentUp!);
                     setState(() {

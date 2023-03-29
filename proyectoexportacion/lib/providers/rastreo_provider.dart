@@ -40,20 +40,50 @@ class RastreoProvider extends ChangeNotifier {
           data.map((rastreo) => RastreoResponseDto.fromJson(rastreo)).toList();
 
       isLoading = false;
-      logger.d(data);
       notifyListeners();
     } else {
       throw Exception('error loading Rastreo');
     }
   }
 
-  Future createStatus(StatusRequestDto status) async {
+  Future createNewStatus(StatusRequestDto status, BuildContext context) async {
+    final local = await SharedPreferences.getInstance();
+    var key = local.getString("token");
     final response = await http.post(
         Uri.parse('http://www.transhipper.somee.com/api/Envio/Status'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          "Authorization": "Bearer $key",
+        },
+        body: jsonEncode(status));
+        if (response.statusCode == 200) {
+      if (context.mounted) {
+        notifyListeners();
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Estado del envio actualizado"),
+        ));
+      }
+    } else {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Error actualizando el estado"),
+        ));
+      }
+    }
+  }
+
+  Future createStatus(StatusRequestDto status) async {
+    final local = await SharedPreferences.getInstance();
+    var key = local.getString("token");
+    final response = await http.post(
+        Uri.parse('http://www.transhipper.somee.com/api/Envio/Status'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          "Authorization": "Bearer $key",
         },
         body: jsonEncode(status));
     logger.d(response.body);
+
+
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:proyectoexportacion/dtos/responses/userdata_response_dto.dart';
+import 'package:proyectoexportacion/models/user.dart';
 import 'package:proyectoexportacion/providers/user_provider.dart';
 
 import '../../dtos/request/user_update_request_dto.dart';
@@ -94,13 +95,13 @@ MaterialPageRoute<dynamic> FormUpdate(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20))),
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {
+                        
                           var user = UserUpdateRequestDto(
-                              name: nameController.text,
-                              lastName: lastNameController.text,
+                              name: nameController.text.isEmpty ? userd.name: nameController.text,
+                              lastName: lastNameController.text.isEmpty ? userd.lastName: lastNameController.text,
                               emailAddres: userd.emailAddres,
                               password: userd.password,
-                              numberPhone: numberController.text,
+                              numberPhone: numberController.text.isEmpty ? userd.numberPhone: numberController.text,
                               rol: userd.rol);
                         
                           context
@@ -108,7 +109,7 @@ MaterialPageRoute<dynamic> FormUpdate(
                               .updateUser(userd.curp, user, context);
 
                           Navigator.pop(context);
-                        }
+                        
                       },
                       child: const Text(
                         'Actualizar',

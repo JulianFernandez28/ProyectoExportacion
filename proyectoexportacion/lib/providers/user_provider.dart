@@ -63,7 +63,6 @@ class UserProvider extends ChangeNotifier {
 
         loadData(json['token']);
         isloading=false;
-
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("Bienvenido " + json["userName"])));
         Navigator.of(context).pushReplacementNamed('/Menu');

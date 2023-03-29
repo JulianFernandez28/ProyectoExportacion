@@ -106,6 +106,7 @@ class EnvioProvider extends ChangeNotifier {
             const SnackBar(content: Text("Envio realizado con exito")));
         isLoading = false;
         final idEnvio = json["id"];
+        createStatus(idEnvio, envio, context);
         Navigator.pushReplacement<void, void>(
             context,
             MaterialPageRoute(
@@ -121,7 +122,8 @@ class EnvioProvider extends ChangeNotifier {
     }
   }
 
-  void createStatus(int id, EnvioCreateRequestDto envio) {
+  void createStatus(
+      int id, EnvioCreateRequestDto envio, BuildContext context) async {
     RastreoProvider rastreo = RastreoProvider();
     var status = StatusRequestDto(
         envioId: id,
@@ -130,7 +132,7 @@ class EnvioProvider extends ChangeNotifier {
         description: "Preparando el envio",
         dateTimeActual: DateTime.now(),
         statusEnvio: 0);
-
-    rastreo.createStatus(status);
+    logger.d("creando estado");
+    await rastreo.createStatus(status);
   }
 }

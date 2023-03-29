@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import 'package:proyectoexportacion/dtos/responses/userdata_response_dto.dart';
+import 'package:proyectoexportacion/env/datos.dart';
 import 'package:proyectoexportacion/providers/user_provider.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,9 +21,11 @@ class UserAccount extends StatefulWidget {
 }
 
 class _UserAccountState extends State<UserAccount> {
+  UserResponseDto? userd;
   @override
   void initState() {
     Provider.of<UserProvider>(context, listen: false).getUser(User.curp);
+    userd = Provider.of<UserProvider>(context, listen: false).user!;
     super.initState();
   }
 
@@ -39,7 +43,6 @@ class _UserAccountState extends State<UserAccount> {
 
   @override
   Widget build(BuildContext context) {
-    final userd = Provider.of<UserProvider>(context, listen: false).user;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -85,56 +88,67 @@ class _UserAccountState extends State<UserAccount> {
                   thickness: 3,
                 ),
                 Card(
-                  child: Consumer<UserProvider>(
-                    builder: (context, userProvider, child) => userProvider
-                            .isloading
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.6,
-                            child: ListView.builder(
-                              itemCount: 1,
-                              itemBuilder: (context, index) {
-                                final user = userProvider.user;
+                  child: FutureBuilder(
+                    future: context.read<UserProvider>().getUser(User.curp),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        // Muestra un widget mientras se espera a que el Future se resuelva
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      return Consumer<UserProvider>(
+                        builder: (context, userProvider, child) =>
+                            userProvider.isloading
+                                ? const Center(
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.6,
+                                    child: ListView.builder(
+                                      itemCount: 1,
+                                      itemBuilder: (context, index) {
+                                        final user = userProvider.user;
 
-                                return Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      InfoUser(
-                                        dato: user!.curp,
-                                        tipo: "Curp",
-                                      ),
-                                      const SizedBox(height: 16),
-                                      InfoUser(
-                                        dato: user.name,
-                                        tipo: "Nombre",
-                                      ),
-                                      const SizedBox(height: 8),
-                                      InfoUser(
-                                        dato: user.lastName,
-                                        tipo: "Apellidos",
-                                      ),
-                                      const SizedBox(height: 16),
-                                      InfoUser(
-                                        dato: user.emailAddres,
-                                        tipo: "Correo electronico",
-                                      ),
-                                      const SizedBox(height: 16),
-                                      InfoUser(
-                                        dato: user.numberPhone,
-                                        tipo: "Numero de telefono",
-                                      )
-                                    ],
+                                        return Padding(
+                                          padding: const EdgeInsets.all(15.0),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              InfoUser(
+                                                dato: user!.curp,
+                                                tipo: "Curp",
+                                              ),
+                                              const SizedBox(height: 16),
+                                              InfoUser(
+                                                dato: user.name,
+                                                tipo: "Nombre",
+                                              ),
+                                              const SizedBox(height: 8),
+                                              InfoUser(
+                                                dato: user.lastName,
+                                                tipo: "Apellidos",
+                                              ),
+                                              const SizedBox(height: 16),
+                                              InfoUser(
+                                                dato: user.emailAddres,
+                                                tipo: "Correo electronico",
+                                              ),
+                                              const SizedBox(height: 16),
+                                              InfoUser(
+                                                dato: user.numberPhone,
+                                                tipo: "Numero de telefono",
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   ),
-                                );
-                              },
-                            ),
-                          ),
+                      );
+                    },
                   ),
                 ),
                 Row(
@@ -195,10 +209,9 @@ class _UserAccountState extends State<UserAccount> {
     final logger = Logger();
 
     return await Navigator.push(
-          context,
-          FormUpdate(formKey, userd, nameController, lastNameController,
-              numberController),
-        ) ??
-        false;
+      context,
+      FormUpdate(
+          formKey, userd, nameController, lastNameController, numberController),
+    );
   }
 }

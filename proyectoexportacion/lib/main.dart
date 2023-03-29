@@ -19,7 +19,7 @@ import 'package:proyectoexportacion/screens/useraccount.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -40,6 +40,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ReportProvider>(
           create: (context) => ReportProvider(),
         ),
+        ChangeNotifierProvider<EnvioProvider>(
+          create: (context) => EnvioProvider(),
+        ),
         ChangeNotifierProvider<ProductProvider>(
           create: (context) => ProductProvider()..getProducts(),
         ),
@@ -47,15 +50,11 @@ class MyApp extends StatelessWidget {
           create: (context) => TransporteProvider()..getTransporte(),
         ),
         ChangeNotifierProvider<EnvioProvider>(
-          create: (context) => EnvioProvider(),
-        ),
-        ChangeNotifierProvider<EnvioProvider>(
           create: (context) => EnvioProvider()..getEnvios(),
         ),
         ChangeNotifierProvider<RastreoProvider>(
           create: (context) => RastreoProvider(),
         ),
-        
         ChangeNotifierProvider(
             create: (context) => TicketProvider()..getTicket())
       ],
