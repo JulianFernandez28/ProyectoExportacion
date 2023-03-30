@@ -12,24 +12,28 @@ class ReportInfo extends StatefulWidget {
 class _ReportInfoState extends State<ReportInfo> {
     @override
   void initState() {
-    Provider.of<ReportProvider>(context, listen: false).getEnvioId(25);
+    Provider.of<ReportProvider>(context, listen: false).getEnvioId(30);
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Provider.of<ReportProvider>(context, listen: false).getEnvioId(25);
+    Provider.of<ReportProvider>(context, listen: false).getEnvioId(30);
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Reportes'),
+        backgroundColor: const Color.fromRGBO(35, 46, 141, 25),
       ),
-      body: Center(
+      body: Container(
+        width: double.infinity,
+        
         child: Column(
           children: [
+            
             Consumer<ReportProvider>(
               builder: (context, reportProvider, child) => reportProvider
                       .isLoading
@@ -40,13 +44,17 @@ class _ReportInfoState extends State<ReportInfo> {
                         itemBuilder: (context, index) {
                           final report = reportProvider.reports![index];
                           return Container(
+                           
+                           margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                             child: Card(
-                              color: Colors.blue[100],
+                              
+                              color: Colors.grey[200],
                               child: ListTile(
-                                splashColor: Colors.red,
-                                title: Text("${report.id} ${report.status}"),
+                                contentPadding: EdgeInsets.all(15),
+                                title: Text("${report.status}", style: TextStyle(fontSize: 20, color: Color.fromRGBO(35, 46, 141, 25)),),
                                 subtitle: Text(report.description),
-                                leading: const Icon(Icons.add_home_rounded),
+                                
+
                               ),
                             ),
                           );
