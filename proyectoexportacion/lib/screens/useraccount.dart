@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import 'package:proyectoexportacion/dtos/responses/userdata_response_dto.dart';
-import 'package:proyectoexportacion/env/datos.dart';
 import 'package:proyectoexportacion/providers/user_provider.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -167,6 +167,7 @@ class _StatusShippinRastreoState extends State<StatusShippinRastreo> {
       'Paquete Recolectado',
       'Paquete en revision (Aduana)',
       'Paquete aprobado (Aduana)',
+      'Paquete rechazado (Aduana)',
       'Paquete por Entregar',
       'Paquete entregado'
     ];
@@ -200,7 +201,7 @@ class _StatusShippinRastreoState extends State<StatusShippinRastreo> {
                         child: TextFormField(
                           controller: ciudadController,
                           decoration:
-                              const InputDecoration(labelText: "Ciudad"),
+                              const InputDecoration(labelText: "Ciudad",hintText: "Ciudad"),
                         ),
                       ),
                       const SizedBox(
@@ -209,13 +210,13 @@ class _StatusShippinRastreoState extends State<StatusShippinRastreo> {
                         child: TextFormField(
                           controller: estadoController,
                           decoration:
-                              const InputDecoration(labelText: "Estado"),
+                              const InputDecoration(labelText: "Estado",hintText: "Estado"),
                         ),
                       ),
                     ],
                   ),
                   DropdownButtonFormField(
-                    icon: const Icon(Icons.local_florist_rounded),
+                    icon: const Icon(Icons.description),
                     isExpanded: true,
                     hint: const Text(
                       "Description",
@@ -239,12 +240,23 @@ class _StatusShippinRastreoState extends State<StatusShippinRastreo> {
                     },
                   ),
                   DropdownButtonFormField<int>(
+                    icon:const Icon(Icons.art_track_outlined),
+                    hint: const Text(
+                      "Estado de envio",
+                      style: TextStyle(fontSize: 15),
+                    ),
                     items: estadoEnvio.entries.map((entry) {
                       return DropdownMenuItem<int>(
                         value: entry.key,
                         child: Text(entry.value),
                       );
                     }).toList(),
+                    validator: (value) {
+                      if (value == null) {
+                        return 'Estado de envio';
+                      }
+                      return null;
+                    },
                     onChanged: (value) {
                       setState(() {
                         _selectedEstado = value!;
